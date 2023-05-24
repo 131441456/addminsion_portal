@@ -1,0 +1,140 @@
+<%- include('./header.ejs') %>
+<div class="primary-content">
+    <div class="container" style="padding:60px 0px">
+        <div class="row">
+          <% if(error.length > 0) { %>
+            <div class="alert alert-danger">
+                <%= error %>
+            </div>
+          <% } %>
+          <% if(message.length > 0) { %>
+            <div class="alert alert-success">
+                <%= message %>
+            </div>
+          <% } %>
+            <div class="col-md-3"></div>
+            <div class="col-md-6">
+                <div class="profile-card">
+                    <div class="image">
+                        <img src="<%= image.url %>" alt="" class="profile-img" />
+                    </div>
+                    <div class="text-data">
+                        <span class="name"><%= n %></span>
+                        <span class="email"><%= email %></span>
+                    </div>
+                    <div class="media-buttons">
+                        <a href="#" style="background: #4267b2" class="link">
+                          <i class="fa fa-facebook"></i>
+                        </a>
+                        <a href="#" style="background: #1da1f2" class="link">
+                          <i class="fa fa-twitter"></i>
+                        </a>
+                        <a href="#" style="background: #e1306c" class="link">
+                          <i class="fa fa-instagram"></i>
+                        </a>
+                        <a href="#" style="background: #ff0000" class="link">
+                          <i class="fa fa-youtube"></i>
+                        </a>
+                      </div>
+                      <div class="btn-profile">
+                        <a href="javascript:;" data-toggle="modal" data-target="#change-pass-modal">Change Password</a>
+                        <a href="javascript:;" data-target="#change-profile-modal" data-toggle="modal">Change Profile</a>
+                      </div>
+                
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="change-pass-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Change Password</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <form action="/change_password" method="post">
+            <div class="input-group-item form-group">
+                <input name="oldpassword" placeholder="Enter Your old Password" class="pass form-control"
+                    type="password" id="ManagerPassword" aria-required="true" aria-invalid="false">
+                <span class="eye-icon-field"><a class="view_password pass"> <i class="fa fa-eye"></i></a></span>
+            </div>
+            <div class="input-group-item form-group">
+                <input name="newpassword" placeholder="Enter Your New Password" class="pass form-control"
+                    type="password" id="ManagerPassword" aria-required="true" aria-invalid="false">
+                <span class="eye-icon-field"><a class="view_password pass"> <i class="fa fa-eye"></i></a></span>
+            </div>
+            <div class="input-group-item form-group">
+                <input name="cpassword" placeholder="Enter Your Confirm Password" class="pass form-control"
+                    type="password" id="ManagerPassword" aria-required="true" aria-invalid="false">
+                <span class="eye-icon-field"><a class="view_password pass"> <i class="fa fa-eye"></i></a></span>
+            </div>
+            
+            <div class="text-center"><input type="submit" value="Submit" class="fullwidth button"></div>
+            
+          </form>
+        </div>
+
+      </div>
+    </div>
+</div>
+
+<div class="modal fade" id="change-profile-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Change Profile</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <form action="/profile_update" method="post"  enctype="multipart/form-data">
+            <div class="input-group-item form-group">
+                <input name="name" id="name" placeholder="Enter Your Name" class="form-control" type="text"
+                    aria-required="true" aria-invalid="false" value="<%= n %>">
+            </div>
+            <div class="input-group-item form-group">
+                <input name="email" id="email" placeholder="Enter Your Email" class="form-control" type="email"
+                    aria-required="true" aria-invalid="false" value="<%= email %>">
+            </div>
+            <div class="input-group-item form-group">
+                <input name="image"  class="form-control" type="file"   >
+                <img src="<%= image.url %>" style="width:50px">
+            </div>
+            
+            <div class="text-center"><input type="submit" value="Submit" class="fullwidth button"></div>
+            
+          </form>
+        </div>
+
+      </div>
+    </div>
+</div>
+
+<%- include('./footer.ejs') %>
+<script type="text/javascript">
+    $('.view_password').click(function () {
+        if ($(this).closest('div').find('input').hasClass("pass")) {
+            $(this).closest('div').find('input').removeClass("pass");
+            $(this).closest('div').find('input').addClass("text");
+            //$(".Pass").css("-webkit-text-security", "none");
+            $(this).closest('div').find('input').prop("type", "text");
+            $(this).addClass("active");
+        }
+        else {
+            $(this).closest('div').find('input').removeClass("text");
+            $(this).closest('div').find('input').addClass("pass");
+            //$(".Pass").css("-webkit-text-security", "disc");
+            $(this).closest('div').find('input').prop("type", "password");
+            $(this).removeClass("active");
+        }
+
+    });
+</script>

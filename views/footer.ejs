@@ -1,0 +1,90 @@
+<footer class="footer-small" role="contentinfo">
+    <div class="container">
+        <div class="cop-md-12 text-center footer-above-text">
+            <div class="social_media_links">
+                <a href="#"><i class="fa fa-facebook-f"></i></a>
+                <a href="#"><i class="fa fa-instagram"></i></a>
+                <a href="#"><i class="fa fa-twitter"></i></a>
+                <a href="#"><i class="fa fa-youtube"></i></a>
+            </div>
+        </div>
+        <div class="text-center wow fadeIn" data-wow-duration="2s">
+            <ul class="backlinks-footer">
+                <li><a href="index.html">© Copyright, All Rights Reserved.</a></li>
+                <li><a href="#">Website Terms of Use</a></li>
+            </ul>
+
+        </div>
+    </div>
+</footer>
+
+<div class="backtop">
+    <p id="back-top" style="display:block;"><a href="#" class="top" style="display: none;"><span id="button"><i
+                    class="fa fa-angle-up"></i></span><span id="link">Back to top</span></a></p>
+</div>
+
+
+
+</body>
+
+<script src="/js/scripts.js"></script>
+<script type="text/javascript">
+    $(window).load(function () {
+        jQuery('body').addClass('pre-loaded');
+    });
+
+    $('#slider').slick({
+        dots: false,
+        autoplay: true,
+        prevArrow: "<button type='button' class='slick-prev'><i class='fa fa-angle-left'></i> </button>",
+        nextArrow: "<button type='button' class='slick-next'><i class='fa fa-angle-right'></i></button>",
+        infinite: false,
+        autoplaySpeed: 7000,
+        speed: 300,
+        pauseOnHover: false,
+        cssEase: 'linear', adaptiveHeight: true,
+
+    });
+    jQuery('.stic').stickMe({
+        topOffset: 300,
+        transitionDuration: 500,
+        shadow: false,
+        shadowOpacity: 0.3,
+        animate: false,
+        triggerAtCenter: true,
+        transitionStyle: 'fade',
+        stickyAlready: false,
+    });
+    jQuery('.sameheight_column').matchHeight(); {
+        property: 'height'
+    }
+    jQuery(document).ready(function () {
+        var offset = 250, // At what pixels show Back to Top Button
+            scrollDuration = 400; // Duration of scrolling to top
+        jQuery(window).scroll(function () {
+            if (jQuery(this).scrollTop() > offset) {
+                jQuery('.top').fadeIn(1000); // Time(in Milliseconds) of appearing of the Button when scrolling down.
+            } else {
+                jQuery('.top').fadeOut(1000); // Time(in Milliseconds) of disappearing of Button when scrolling up.
+            }
+        });
+
+        // Smooth animation when scrolling
+        jQuery('.top').click(function (event) {
+            event.preventDefault();
+            jQuery('html, body').animate({
+                scrollTop: 0
+            }, scrollDuration);
+        })
+    });
+    wow = new WOW({
+        boxClass: 'wow',      // default
+        animateClass: 'animated', // default
+        offset: 0,          // default
+        mobile: true        // default
+
+    });
+    wow.init();
+</script>
+
+</html>

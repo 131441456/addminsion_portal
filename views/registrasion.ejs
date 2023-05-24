@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Admission Portal</title>
+    <link rel='icon' type='image/png' href='/images/favicon.png'>
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+</head>
+
+<body>
+    <div id="maincontainer">
+        <div class="login-block-section">
+            <div class="login-block-title">Welcome...</div>
+            <div class="login-block">
+                <% if(message.length > 0) { %>
+                    <div class="alert alert-danger">
+                        <%= message %>
+                    </div>
+                <% } %>
+                <form action="/insert" enctype="multipart/form-data"  autocomplete="off" id="loginForm" class="login-form" method="post">
+                    <div class="input-group-item form-group">
+                        <input name="name" id="name" placeholder="Enter Your Name" class="form-control" type="text"
+                            aria-required="true" aria-invalid="false">
+                    </div>
+                    <div class="input-group-item form-group">
+                        <input name="email" id="email" placeholder="Enter Your Email" class="form-control" type="email"
+                            aria-required="true" aria-invalid="false">
+                    </div>
+                    <div class="input-group-item form-group">
+                        <input name="password" placeholder="Enter Your Password" class="pass form-control"
+                            type="password" id="ManagerPassword" aria-required="true" aria-invalid="false">
+                        <span class="eye-icon-field"><a class="view_password pass"> <i class="fa fa-eye"></i></a></span>
+                    </div>
+                    <div class="input-group-item form-group">
+                        <input name="cpassword" placeholder="Enter Your Confirm Password" class="pass form-control"
+                            type="password" id="ManagerPassword" aria-required="true" aria-invalid="false">
+                        <span class="eye-icon-field"><a class="view_password pass"> <i class="fa fa-eye"></i></a></span>
+                    </div>
+                   
+                    <div class="input-group-item form-group">
+                        <input name="image"  class="form-control" type="file"  >
+                        
+                    </div>
+                    <br>
+
+                    <div class="login-block-button">
+                        <input type="submit" value="Submit" class="login-submit">
+                    </div>
+                    <br>
+                </form>
+                <div class="login-forget-link" style="margin-top: 15px; margin-bottom: 0;">
+
+                    <a href="#" style="margin-top: 5px;">Reset Password</a><br>
+                    <a href="/">Do you have account Login Now</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <style type="text/css">
+        body:before {
+            background: rgba(0, 0, 0, .3);
+            content: "";
+            position: fixed;
+            width: 100%;
+            top: 0;
+            left: 0;
+            height: 100%;
+        }
+
+        body {
+            background: #d6f9e4;
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+        }
+
+        #maincontainer {
+            min-height: 100%;
+            position: unset;
+            z-index: 1;
+        }
+
+        @media(max-width:991px) {
+            .login-block-section {
+                max-width: 325px;
+            }
+        }
+    </style>
+    <script src="js/scripts.js"></script>
+    <script type="text/javascript">
+        $('.view_password').click(function () {
+            if ($(this).closest('div').find('input').hasClass("pass")) {
+                $(this).closest('div').find('input').removeClass("pass");
+                $(this).closest('div').find('input').addClass("text");
+                //$(".Pass").css("-webkit-text-security", "none");
+                $(this).closest('div').find('input').prop("type", "text");
+                $(this).addClass("active");
+            }
+            else {
+                $(this).closest('div').find('input').removeClass("text");
+                $(this).closest('div').find('input').addClass("pass");
+                //$(".Pass").css("-webkit-text-security", "disc");
+                $(this).closest('div').find('input').prop("type", "password");
+                $(this).removeClass("active");
+            }
+
+        });
+    </script>
+</body>

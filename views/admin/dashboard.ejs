@@ -1,0 +1,56 @@
+<%- include('../header.ejs') %>
+
+<div class="primary-content">
+    <div class="container" style="padding:60px 0px">
+       
+        <div class="table-responsive">
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                    <th>S.N.</th>
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th>Mobile Number</th>
+                    <th>Status</th>
+                    <th>Comment</th>
+                    <th></th>
+                    <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <% i= 1 %>
+                    <% c.forEach((item)=>{ %>
+                        <tr>
+                            
+                            <td><%= i++ %></td>
+                            <td><%= item.name %></td>
+                            <td><%= item.email %></td>
+                            <td><%= item.mobile_number %></td>
+                            <td><%= item.status %></td>
+                            <td>
+                                <form action="/update_approve/<%= item._id %>" method="post">
+                                    <textarea name = "comment"></textarea>
+                                
+                            </td>
+                            <td>
+                                <button class="btn btn-info" type="submit" name="status" value="approved">Approved</button>
+                                <button class="btn btn-danger" type="submit" name="status" value="rejected">Rejected</button>
+                            </form>
+                            </td>
+                            <td>
+                                <a href="#" class="btn btn-info">View</a>
+                                
+                                <a href="#" class="btn btn-danger">Delete</a>
+                            </td>
+                        </tr>
+                   <% }) %>
+                   
+                </tbody>
+            </table>
+    
+        </div>
+    
+    </div>
+    </div>
+
+<%- include('../footer.ejs') %>
